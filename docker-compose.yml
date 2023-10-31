@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+  soccer_manager_be_lite:
+    container_name: soccer_manager_be_lite
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "9000:9000"
+
+  soccer_manager_be_lite_db:
+    container_name: soccer_manager_be_lite_db
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=soccer_manager_be_lite_db
+      - POSTGRES_USER=soccer_manager_be_lite_db
+      - POSTGRES_DB=soccer_manager_be_lite_db
+      - PGPORT=6000
+    ports:
+      - "6000:6000"
+    volumes:
+      - /databases/soccer_manager_be_lite_db:/var/lib/postgresql/data
